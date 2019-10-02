@@ -1,0 +1,143 @@
+@CHARSET "ISO-8859-1";
+
+
+.split {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left {
+    left: 0;
+    background-color: #ddd	;
+}
+
+.right {
+    right: 0;
+    background-color: #ddd;
+}
+
+.middlepane .Restaurantdetails{
+    width : 100%;
+    margin : 16px auto;
+    text-align : center ;
+    border : 1px solid #eee;
+    box-shadow : 0 2px 3px #ccc;
+    padding : 16px ;
+}
+.Restaurantdetails{
+    width : 60%;
+    margin : 16px auto;
+    text-align : center ;
+    border : 1px solid #eee;
+    box-shadow : 0 2px 3px #ccc;
+    padding : 16px ;
+    /* background-color: #907163; */
+     background-color:#6F2232;
+}
+
+.imgbox {
+    display: grid;
+    height: 30%;
+    border-radius: 50%;
+    
+}
+.center-fit {
+     max-width: 100%;
+     max-height: 100vh;
+     margin: auto;
+ }
+
+.centered {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.split img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+#header {
+    height: 200px;
+    width:60%;
+   /*  background-image: url(../SRC/restaurant.jpg);*/
+    background-repeat: no-repeat;
+    font-family: 'Shift', sans-serif;
+}
+#header h2 {    
+    font-size: 4em;
+    position: relative;
+    top: 30px;
+    left: 550px;
+    display: inline;
+}
+#header p {
+    font-size: 1.3em;
+    font-weight: bold;
+    position: relative;
+    top: 50px;
+    text-align: right;
+    left: 60px;
+    display: inline
+}    
+#menu {
+    position: relative;
+    top: 10px;
+    left: relative;
+    display: inline-block;
+}
+#menu li{
+    font-weight: bold;
+    display: inline;
+    text-transform: uppercase;
+    margin-right: 40px;
+    
+}
+/* #menu .dropdown li:hover {background: #555;
+				display: block;} */
+/* #menu input {
+    font-size: 0.7em;
+    text-transform: lowercase;
+    text-align: right;
+    position: relative;
+    top: -4px;
+} */
+
+
+/* Hover code*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #666; 
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: justify;
+    width: 300px;
+}
+
+/* .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+   text-align: justify;
+    text-decoration: none;
+    display: block;
+    aling: left;
+    
+} */
+
+
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}

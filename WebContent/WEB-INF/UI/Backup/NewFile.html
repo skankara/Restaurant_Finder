@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="../JS/ajax.js"></script>
+<link rel="stylesheet" href="../CSS/popup.css">
+<link rel="stylesheet" href="../CSS/generic.css">
+<!--<script src="../JS/popup.js"></script>  -->
+<script>
+        $(document).ready(function(){
+        	$("button").click(function(){
+        		
+        		var l_firstsignup_2 = document.getElementById("firstsignup_1").checked;
+        		var l_firstlogin_2 = document.getElementById("firstlogin_1").checked;
+        		var l_user_2 = document.getElementById("user").checked;
+        		var l_restaurant_2 = document.getElementById("restaurant").checked;
+        		var url = null ;
+        		var backslash = '/' ;
+        		if(l_user_2 == true && l_firstsignup_2 == true )
+        		{
+        			url = "http://localhost:8080/UserManagement/rest/UserService/post/user/"; 
+        			
+           			url = url + document.getElementsByName('uemail')[0].value+backslash+
+            					document.getElementsByName("upassword")[0].value+backslash+
+            					document.getElementsByName("uname")[0].value+backslash+
+             					document.getElementsByName("ulastname")[0].value+backslash+
+             					document.getElementsByName("ucity")[0].value+backslash+
+             					document.getElementsByName("ustate")[0].value;
+        			
+        			console.log(url);
+        			$.post(url);
+            		console.log("Success");
+        		}
+        		if(l_restaurant_2 == true && l_firstsignup_2 == true)
+       			{
+        			url = "http://localhost:8080/UserManagement/rest/UserService/post/restaurant/" ;
+        			url = url + document.getElementsByName('remail')[0].value+backslash+
+								document.getElementsByName("rpassword")[0].value+backslash+
+								document.getElementsByName("rname")[0].value+backslash+
+			 					document.getElementsByName("rcity")[0].value+backslash+
+			 					document.getElementsByName("rstate")[0].value+backslash+
+			 					document.getElementsByName("prange")[0].value+backslash+
+			 					document.getElementsByName("rstyle")[0].value; 	
+        			
+        			$.post(url);
+            		console.log("Success");
+       			}
+        		if(l_user_2 == true && l_firstlogin_2 == true)
+        		{
+        			url = "http://localhost:8080/UserManagement/rest/UserService/get/users/" ;
+        			url = url + document.getElementsByName('uemail_1')[0].value+backslash+
+					document.getElementsByName("upassword_1")[0].value;
+        			
+        			$.get(url, function(result,status){
+        		            console.log("result : "+result);
+        		    });
+        		}
+        		
+        		if(l_restaurant_2 == true && l_firstlogin_2 == true)
+        		{
+        			url = "http://localhost:8080/UserManagement/rest/UserService/get/users/restaurant/" ;
+        			url = url + document.getElementsByName('uemail_1')[0].value+backslash+
+					document.getElementsByName("upassword_1")[0].value;
+        			
+        			$.getJSON(url, function(result){
+        		        $.each(result, function(i, field){
+        		            console.log("result : "+result);
+        		        });
+        		    });
+        		}
+        		
+        		console.log(url);
+        	})
+        })
+</script>
+
+<style>
+/* Style the footer */
+header {
+    background-color: #666;
+    padding: 0px; 
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+
+</style>
+</head>
+
+<body >
+<div>
+<header>
+	<table width = "100%">
+		<tr>
+		<td width = "20%">
+		Profile Picture
+		</td>
+		<td width = "60%">	
+		<h2>Welcome to the world of Food</h2></td>
+		<td width = "20%" id="signup">Sign Up/Login</td>
+		</tr>
+	</table> 
+</header>
+</div>
+<br>
+<div>
+
+</div>
+<!-- POP UP Window Coding -->
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div align = "center">
+    <input type="radio" name="l_firstsignup" value="firstsignup_1" id ="firstsignup_1" onclick="user_restaurant()">Sign Up
+    <input type="radio" name="l_firstsignup" value="firstlogin_1" id="firstlogin_1" onclick="user_restaurant()">Log In<br>
+    
+    <input type="radio" name="login" value="user" id="user" onclick="user_restaurant()" > User 
+  	<input type="radio" name="login" value="restaurant" id="restaurant" onclick="user_restaurant()"> Restaurant Owner
+  	
+  	
+  	<!--  LOGIN STARTS-->
+	  	<div id = "login_1" align = "center">
+	  	User id :
+			<input type="text" name="uemail_1"  value = ""><br>
+			  Password:
+			  <input type="password" name="upassword_1" value=""><br>
+			<button id = "user_restaurant_login_1">Submit</button>  
+	  	</div>
+  	<!-- LOGIN END  -->
+  	
+  	<!--  USER SIGNUP STARTS-->
+	  	<div id = "userdetails" align ="center" >
+	  	<br>
+	  		User id :
+			<input type="text" name="uemail"  value = "123123456"><br>
+			  Password:
+			  <input type="password" name="upassword" value="xyz"><br>
+			Name :
+			<input type="text" name="uname" value="qwe">
+			  <br>
+			Surname :
+			<input type="text" name="ulastname" value="kan">
+			  <br>
+			City:
+			<input type="text" name="ucity" value="rty">
+			<br>
+			State:
+			<input type="text" name="ustate" value="ddfd">
+			<br>		
+			  <button id = "usersubmit">Submit</button>
+	  	
+	  	</div>
+  	<!--  USER SIGNUP ENDS-->
+  	
+  	<!--  RESTAURANT SIGNUP STARTS-->
+	  	<div id = "restaurantdetails" align="center">
+	  		<br>
+	  		Rataurant id :
+			<input type="text" name="remail"  value = "123123456@gmail.com"><br>
+			  Password:
+			  <input type="password" name="rpassword" value="xyz"><br>
+			Restaurant Name :
+			<input type="text" name="rname" value="qwe">
+			  <br>
+			City:
+			<input type="text" name="rcity" value="rty">
+			<br>
+			State:
+			<input type="text" name="rstate" value="ddfd">
+			<br>
+			Price range:
+			<input type="radio" name="prange" value="20" checked> $<br>
+			  <input type="radio" name="prange" value="50"> $$<br>
+			  <input type="radio" name="prange" value="100"> $$$<br>
+			  <input type="radio" name="prange" value="200"> $$$$<br>
+			
+			Cuisine Style :
+			  <input type="text" name="rstyle" value="fdfd">
+			<br>
+			  <br>
+			  <button id = "restaurantsubmit">Submit</button>
+	  	</div>
+  	<!--  RESTAURANT SIGNUP ENDS-->
+    </div>
+  </div>
+
+</div>
+<!--  Script for the pop up window -->
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("signup");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+/* function user_signup(signup){
+	
+	if(signup.value == "firstlogin"){
+		document.getElementById('userdetails').style.display  = 'block';
+	}
+	
+} */
+
+
+function user_restaurant(){
+	
+	var l_firstsignup_1 = document.getElementById("firstsignup_1").checked;
+	var l_firstlogin_1 = document.getElementById("firstlogin_1").checked;
+	var l_user = document.getElementById("user").checked;
+	var l_restaurant = document.getElementById("restaurant").checked;
+	/* var signup = document.getElementsByName('l_firstsignup')[0].value; */
+	
+	console.log("firstsignup_1 : "+ l_firstsignup_1);
+	
+	if(l_user == true && l_firstlogin_1 == true ){
+		document.getElementById('userdetails').style.display  = 'none';
+		document.getElementById('restaurantdetails').style.display  = 'none';
+		document.getElementById('login_1').style.display  = 'block';
+	}
+	if(l_restaurant == true && l_firstlogin_1 == true ){
+		document.getElementById('userdetails').style.display  = 'none';
+		document.getElementById('restaurantdetails').style.display  = 'none';
+		document.getElementById('login_1').style.display  = 'block';
+	}
+	
+	
+	if(l_user == true && l_firstsignup_1 == true ){
+		console.log("inside");
+		document.getElementById('login_1').style.display  = 'none';
+		document.getElementById('userdetails').style.display  = 'block';
+		document.getElementById('restaurantdetails').style.display  = 'none';
+	}
+	if(l_restaurant == true && l_firstsignup_1 == true)
+	{
+		console.log("in Else");
+		document.getElementById('login_1').style.display  = 'none';
+		document.getElementById('userdetails').style.display  = 'none';
+		document.getElementById('restaurantdetails').style.display  = 'block';
+	}
+}
+
+</script>
+<!-- POP UP Window Closes-->
+
+<footer>
+  <p>Footer</p>
+</footer>
+</body>
+</html>
